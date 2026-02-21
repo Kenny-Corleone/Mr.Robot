@@ -10,7 +10,7 @@ from deep_translator import GoogleTranslator
 from telegram import Bot
 from telegram.constants import ParseMode
 
-BOT_TOKEN  = os.environ.get("BOT_TOKEN", "")
+BOT_TOKEN  = os.environ.get("BOT_TOKEN", "7384331973:AAHtjjNtG5p6hQbnZRoi9eyyja_nB43QLgE")
 CHANNEL_ID = os.environ.get("CHANNEL_ID", "@mr_robot_az")
 SEEN_FILE  = "seen_articles.json"
 MAX_PER_RUN = 8

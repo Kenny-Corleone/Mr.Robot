@@ -2,7 +2,7 @@ name: MR. ROBOT — Xəbər Botu
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # hər 15 dəqiqədən bir (UTC)
+    - cron: '*/5 * * * *'  # hər 5 dəqiqədən bir (UTC)
   workflow_dispatch:
 
 jobs:

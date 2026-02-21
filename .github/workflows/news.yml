@@ -1,0 +1,37 @@
+name: MR. ROBOT — Xəbər Botu
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # Hər 15 dəqiqədən bir
+  workflow_dispatch:          # Əl ilə də işə sala bilərsən
+
+jobs:
+  post-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Kodu yüklə
+        uses: actions/checkout@v4
+
+      - name: Python quraşdır
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Kitabxanaları quraşdır
+        run: |
+          pip install feedparser deep-translator python-telegram-bot==20.7
+
+      - name: Görülmüş xəbərləri cache-dən yüklə
+        uses: actions/cache@v4
+        with:
+          path: seen_articles.json
+          key: seen-articles-${{ github.run_id }}
+          restore-keys: |
+            seen-articles-
+
+      - name: Botu işə sal
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        run: python mr_robot_news.py
